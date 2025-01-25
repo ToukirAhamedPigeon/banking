@@ -6,7 +6,9 @@ import {sidebarLinks} from '@/constants/index'
 import {cn} from '@/lib/utils'
 import {usePathname} from 'next/navigation'
 
-const Sidebar = ({user}: SiderbarProps) => {
+const Sidebar = (
+  // {user}: SiderbarProps
+) => {
     const pathName=usePathname();
   return (
     <section className="sidebar">
