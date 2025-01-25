@@ -6,7 +6,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const loggedIn ={firstName: 'Toukir', lastName: 'Pigeon'};
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const loggedIn ={firstName: 'Toukir', lastName: 'Pigeon'};
   return (
     <main className="flex h-screen w-full font-inter">
         <Sidebar 
