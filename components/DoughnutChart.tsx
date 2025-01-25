@@ -6,7 +6,8 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DoughnutChart = (
-     //{accounts}:DoughnutChartProps
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+     {accounts}:DoughnutChartProps
 ) => {
     const data={
         datasets: [
