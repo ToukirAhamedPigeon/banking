@@ -4,6 +4,9 @@ import Image from 'next/image'
 import React from 'react'
 
 const BankCard = ({account, userName, showBalance =true}:CreditCardProps) => {
+    if (showBalance) {
+        console.log("Balance is shown");
+      }
   return (
     <div className='flex flex-col'>
       <Link href="/" className='bank-card'>

@@ -6,6 +6,9 @@ import BankCard from './BankCard'
 const RightSidebar = (
      {user, transactions, banks}:RightSidebarProps
 ) => {
+    if (transactions) {
+        console.log("transactions is shown");
+      }
   return (
     <aside className='right-sidebar'>
       <section className="flex flex-col pb-8">

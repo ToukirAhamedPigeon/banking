@@ -7,7 +7,18 @@ const Home = () => {
   const loggedIn = {
     firstName: 'Toukir Ahamed',
     lastName: 'Pigeon',
-    email:'toukir.ahamed.pigeon@gmail.com'
+    email: 'toukir.ahamed.pigeon@gmail.com',
+    $id: '1',
+    userId: 'user123',
+    dwollaCustomerUrl: 'https://api.dwolla.com/customers/123',
+    dwollaCustomerId: '123',
+    address1: '123 Main St',
+    city: 'Anytown',
+    state: 'CA',
+    postalCode: '12345',
+    phoneNumber: '555-555-5555',
+    dateOfBirth: '1990-01-01',
+    ssn: '123-45-6789',
   }
   return (
     <section className='home'>
@@ -30,7 +41,14 @@ const Home = () => {
       <RightSidebar 
           user = {loggedIn}
           transactions={[]}
-          banks={[{currentBalance:100.50},{currentBalance:120.20}]}
+          banks={[
+            // {
+            //   currentBalance:1000.35
+            // },
+            // {
+            //   currentBalance:250
+            // }
+        ]}
         />
     </section>
   )
