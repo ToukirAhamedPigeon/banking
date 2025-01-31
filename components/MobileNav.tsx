@@ -14,6 +14,7 @@ import {
 import { sidebarLinks } from '@/constants'
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
+import LogoLink from './LogoLink'
   
 
 const MobileNav = (
@@ -29,10 +30,7 @@ const MobileNav = (
         <SheetContent side="left" className='border-none bg-white'>
             <SheetTitle></SheetTitle>
             <SheetDescription></SheetDescription>
-            <Link href='/' className='cursor-pointer flex items-center gap-1 px-4'>
-                <Image src='/icons/logo.svg' width={34} height={34} alt='Logo' />
-                <h1 className='text-20 font-ibm-plex-serif font-bold text-black-1'>PBank</h1>
-            </Link>
+            <LogoLink />
             <div className='mobilenav-sheet'>
                 <SheetClose asChild>
                     <nav className="flex h-full flex-col gap-6 pt-16 text-white">
