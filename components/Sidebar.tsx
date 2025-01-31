@@ -15,7 +15,7 @@ const Sidebar = (
       <nav className='flex flex-col gap-4'>
         <Link href='/' className='mb-12 cursor-pointer flex items-center gap-2'>
             <Image src='/icons/logo.svg' width={34} height={34} alt='Logo' className='size-[24px] max-xl:size-14'/>
-            <h1 className='sidebar-logo'>Pigeonic Bank</h1>
+            <h1 className='sidebar-logo'>PBank</h1>
         </Link>
         {sidebarLinks.map((item)=>{
             const isActive=pathName===item.route || pathName.startsWith(`${item.route}/`);
