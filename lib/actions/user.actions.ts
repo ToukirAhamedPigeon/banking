@@ -7,11 +7,11 @@ import { cookies } from "next/headers";
 import { parseStringify } from "../utils";
 
 export const signIn = async ({email, password}:signInProps) => {
+  console.log('Inside Sign In');
     try {
         //Mutation / Database / Make fetch
         const { account } = await createAdminClient();
         const response = await account.createEmailPasswordSession(email,password);
-        console.log(response);
         (await cookies()).set("appwrite-session", response.secret, {
           path: "/",
           httpOnly: true,
