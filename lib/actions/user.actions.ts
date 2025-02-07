@@ -56,7 +56,9 @@ export async function getLoggedInUser() {
       const { account } = await createSessionClient();
       const user = await account.get();
       return await parseStringify(user);
-    } catch (_error) {
+    } 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    catch (_error) {
       //console.error('Error',error);
       return null;
     }
@@ -67,7 +69,9 @@ export async function getLoggedInUser() {
       const { account } = await createSessionClient();
       (await cookies()).delete('appwrite-session');
       await account.deleteSession('current');
-    } catch (_error) {
+    } 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    catch (_error) {
       //console.error('Error',error);
       return null;
     }
