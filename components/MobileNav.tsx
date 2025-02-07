@@ -15,10 +15,11 @@ import { sidebarLinks } from '@/constants'
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
 import LogoLink from './LogoLink'
+import Footer from './Footer'
   
 
 const MobileNav = (
-    // {user}:MobileNavProps
+     {user}:MobileNavProps
 ) => {
     const pathName=usePathname();
   return (
@@ -33,7 +34,7 @@ const MobileNav = (
             <LogoLink />
             <div className='mobilenav-sheet'>
                 <SheetClose asChild>
-                    <nav className="flex h-full flex-col gap-6 pt-16 text-white">
+                    <nav className="flex flex-col h-full gap-4 pt-2 text-white">
                     {sidebarLinks.map((item)=>{
                         const isActive=pathName===item.route || pathName.startsWith(`${item.route}/`);
                         return (
@@ -47,7 +48,7 @@ const MobileNav = (
                             USER
                     </nav>
                 </SheetClose>
-                Footer
+                <Footer user={user} type="mobile"/>
             </div>
         </SheetContent>
     </Sheet>
