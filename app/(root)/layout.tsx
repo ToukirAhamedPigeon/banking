@@ -14,7 +14,7 @@ export default async function RootLayout({
   // console.log(loggedIn);
   // console.log('I am Here');
   // console.log(!loggedIn);
-  if(!loggedIn) redirect('/sign-in');
+  //if(!loggedIn) redirect('/sign-in');
   return (
     <main className="flex h-screen w-full font-inter">
         <Sidebar  
