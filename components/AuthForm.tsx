@@ -11,7 +11,7 @@ import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import {useRouter} from 'next/navigation'
-import { signUp, signIn } from '@/lib/actions/user.actions'
+import { signUp, signIn, getLoggedInUser } from '@/lib/actions/user.actions'
 
 const AuthForm = ({type}:{type:string}) => {
     const router = useRouter();
@@ -51,8 +51,10 @@ const AuthForm = ({type}:{type:string}) => {
                     email: data.email,
                     password: data.password
                 });
-                console.log(response);
-                if(response) router.push('/')
+                console.log('response',response);
+                const loggedIn = await getLoggedInUser();
+                console.log('loggedin',loggedIn);
+                if(response && loggedIn) router.push('/')
             }
         } catch (error) {
             console.log(error);
