@@ -16,7 +16,7 @@ import { signUp, signIn } from '@/lib/actions/user.actions'
 const AuthForm = ({type}:{type:string}) => {
     const router = useRouter();
     // 1. Define your form.
-    const formSchema =authFormSchema(type);
+    const formSchema = authFormSchema(type);
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
