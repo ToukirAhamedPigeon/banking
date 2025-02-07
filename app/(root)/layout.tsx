@@ -21,23 +21,26 @@ export default async function RootLayout({
   // }
   return (
     <>
-    <AuthRedirect />
-    <main className="flex h-screen w-full font-inter">
-        <Sidebar  
-         user={loggedIn}
-        /> 
-        <div className="flex size-full flex-col">
-          <div className="root-layout">
-            <Image src="/icons/logo.svg" width={30} height={30} alt="menu icon"/>
-            <div>
-              <MobileNav 
-               user={loggedIn}
-              />
+    {!loggedIn 
+    ?<AuthRedirect />
+      : <main className="flex h-screen w-full font-inter">
+          <Sidebar  
+          user={loggedIn}
+          /> 
+          <div className="flex size-full flex-col">
+            <div className="root-layout">
+              <Image src="/icons/logo.svg" width={30} height={30} alt="menu icon"/>
+              <div>
+                <MobileNav 
+                user={loggedIn}
+                />
+              </div>
             </div>
+            {children}
           </div>
-          {children}
-        </div>
-    </main>
+      </main>
+    }
+    
     </>
   );
 }
