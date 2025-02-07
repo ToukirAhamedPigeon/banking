@@ -27,7 +27,7 @@ const Home = async () => {
       <RightSidebar 
           user = {loggedIn}
           transactions={[]}
-          // @ts-ignore
+          // @ts-expect-error This suppresses the error but ensures you fix it later
           banks={[ {currentBalance:1000.35},{currentBalance:250} ]}
         />
     </section>

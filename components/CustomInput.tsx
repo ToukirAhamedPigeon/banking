@@ -10,6 +10,7 @@ import { Control, FieldPath } from "react-hook-form"
 import { z } from "zod"
 import { authFormSchema } from '@/lib/utils'
 
+//@typescript-eslint/no-unused-vars
 const formSchema =authFormSchema('sign-up');
   interface CustomInput{
     control: Control<z.infer<typeof formSchema>>,
