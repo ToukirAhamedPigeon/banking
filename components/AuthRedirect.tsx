@@ -13,6 +13,9 @@ export default function AuthRedirect() {
       if (!user) {
         router.push("/sign-in"); // Client-side navigation
       }
+      else{
+        router.push("/");
+      }
     }
     checkAuth();
   }, []);

@@ -20,6 +20,8 @@ export default async function RootLayout({
   //   redirect("/sign-in");
   // }
   return (
+    <>
+    <AuthRedirect />
     <main className="flex h-screen w-full font-inter">
         <Sidebar  
          user={loggedIn}
@@ -33,9 +35,9 @@ export default async function RootLayout({
               />
             </div>
           </div>
-          <AuthRedirect />
           {children}
         </div>
     </main>
+    </>
   );
 }
