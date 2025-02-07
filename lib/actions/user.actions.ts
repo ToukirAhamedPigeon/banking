@@ -11,6 +11,7 @@ export const signIn = async ({email, password}:signInProps) => {
         //Mutation / Database / Make fetch
         const { account } = await createAdminClient();
         const response = await account.createEmailPasswordSession(email,password);
+        console.log(response);
         (await cookies()).set("appwrite-session", response.secret, {
           path: "/",
           httpOnly: true,
