@@ -1,8 +1,9 @@
+import AuthRedirect from "@/components/AuthRedirect";
 import MobileNav from "@/components/MobileNav";
 import Sidebar from "@/components/Sidebar";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import Image from "next/image";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
 
 export default async function RootLayout({
@@ -14,10 +15,10 @@ export default async function RootLayout({
   console.log("LOGGED IN USER:", loggedIn); 
   console.log("IS LOGGED IN:", !!loggedIn);
   
-  if (!loggedIn) {
-    console.log("Redirecting to /sign-in"); // Debugging log
-    redirect("/sign-in");
-  }
+  // if (!loggedIn) {
+  //   console.log("Redirecting to /sign-in"); // Debugging log
+  //   redirect("/sign-in");
+  // }
   return (
     <main className="flex h-screen w-full font-inter">
         <Sidebar  
@@ -32,6 +33,7 @@ export default async function RootLayout({
               />
             </div>
           </div>
+          <AuthRedirect />
           {children}
         </div>
     </main>
