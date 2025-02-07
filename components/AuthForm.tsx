@@ -46,6 +46,7 @@ const AuthForm = ({type}:{type:string}) => {
             }
 
             if(type === 'sign-in'){
+                console.log(type);
                 const response = await signIn({
                     email: data.email,
                     password: data.password
