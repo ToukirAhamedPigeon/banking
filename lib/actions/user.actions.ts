@@ -70,7 +70,7 @@ export async function getLoggedInUser() {
     try {
       const { account } = await createSessionClient();
       (await cookies()).delete('appwrite-session');
-      await account.deleteSession('current');
+      return await account.deleteSession('current');
     } 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     catch (error) {
