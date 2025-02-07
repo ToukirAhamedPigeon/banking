@@ -60,8 +60,8 @@ export async function getLoggedInUser() {
       return await parseStringify(user);
     } 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    catch (_error) {
-      //console.error('Error',error);
+    catch (error) {
+      console.error('Error',error);
       return null;
     }
   }
@@ -73,8 +73,8 @@ export async function getLoggedInUser() {
       await account.deleteSession('current');
     } 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    catch (_error) {
-      //console.error('Error',error);
+    catch (error) {
+      console.error('Error',error);
       return null;
     }
   }
