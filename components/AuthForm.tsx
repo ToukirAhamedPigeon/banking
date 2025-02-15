@@ -40,10 +40,10 @@ const AuthForm = ({type}:{type:string}) => {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         if(type === 'sign-up'){
-            showLoader("Signing up...");
+            showLoader("You're In!");
         }
         else{
-            showLoader("Signing in...");
+            showLoader("Welcome Back!");
         }
         setIsLoading(true);
         try {
