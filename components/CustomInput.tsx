@@ -40,7 +40,7 @@ const CustomInput = ({control, type, name, label, placeholder}:CustomInput) => {
                         type={type}
                         id={name}
                         placeholder={placeholder}
-                        className='input-class'
+                        className='input-class min-w-full'
                         {...field}
                         />
                     </FormControl>
