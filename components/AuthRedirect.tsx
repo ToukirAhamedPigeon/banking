@@ -18,7 +18,7 @@ export default function AuthRedirect() {
       }
     }
     checkAuth();
-  }, []);
+  }, [router]);
 
   return null; // Prevent rendering
 }

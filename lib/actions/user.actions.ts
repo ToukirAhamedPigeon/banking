@@ -1,10 +1,15 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use server';
 
 import { ID } from "node-appwrite";
 import { createAdminClient, createSessionClient } from "../appwrite";
 import { cookies } from "next/headers";
 import { parseStringify } from "../utils";
+
+interface ErrorResponse {
+  response: {
+    code: number;
+  };
+}
 
 export const signIn = async ({ email, password }: signInProps) => {
   try {
@@ -24,11 +29,14 @@ export const signIn = async ({ email, password }: signInProps) => {
     return parseStringify(response);
   } catch (error) {
     // Handle invalid credentials error
-    if (error instanceof Error && 'response' in error && (error as any).response.code === 401) {
-      //console.error('Invalid credentials. Please check your email and password.');
-      return { error: 'Invalid credentials. Please check your email and password.' };
+    if (error instanceof Error) {
+      // Check if the error is a specific type with a 'response' object and code property
+      if ((error as unknown as ErrorResponse).response?.code === 401) {
+        return { error: 'Invalid credentials. Please check your email and password.' };
+      } else {
+        return { error: 'An unexpected error occurred.' };
+      }
     } else {
-      //console.error('Error', error);
       return { error: 'An unexpected error occurred.' };
     }
   }
@@ -55,11 +63,14 @@ export const signUp = async (userData:SignUpParams) => {
         });
         return parseStringify(newUserAccount);
     } catch (error) {
-      if (error instanceof Error && 'response' in error && (error as any).response.code === 401) {
-        //console.error('Registration Failed!');
-        return { error: 'Registration Failed!' };
+      if (error instanceof Error) {
+        // Check if the error is a specific type with a 'response' object and code property
+        if ((error as unknown as ErrorResponse).response?.code === 401) {
+          return { error: 'Registration Failed!' };
+        } else {
+          return { error: 'An unexpected error occurred.' };
+        }
       } else {
-        //console.error('Error', error);
         return { error: 'An unexpected error occurred.' };
       }
     }
