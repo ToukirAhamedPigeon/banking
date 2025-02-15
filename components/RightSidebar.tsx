@@ -7,7 +7,7 @@ const RightSidebar = (
      {user, transactions, banks}:RightSidebarProps
 ) => {
     if (transactions) {
-        console.log("transactions is shown");
+        //console.log("transactions is shown");
       }
   return (
     <aside className='right-sidebar'>

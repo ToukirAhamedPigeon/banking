@@ -11,8 +11,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const loggedIn = await getLoggedInUser();
-  console.log("LOGGED IN USER:", loggedIn); 
-  console.log("IS LOGGED IN:", !!loggedIn);
+  // console.log("LOGGED IN USER:", loggedIn); 
+  // console.log("IS LOGGED IN:", !!loggedIn);
   return (
     <>
     {!loggedIn 

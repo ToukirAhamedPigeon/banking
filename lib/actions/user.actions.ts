@@ -18,7 +18,7 @@ export const signIn = async ({email, password}:signInProps) => {
           sameSite: "strict",
           secure: true,
       });
-        console.log(response);
+        //console.log(response);
         return parseStringify(response);
     } catch (error) {
         console.error('Error',error);

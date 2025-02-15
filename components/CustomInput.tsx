@@ -25,8 +25,9 @@ interface CustomInput {
   name: FieldPath<FormSchemaType>;
   label: string;
   placeholder: string;
+  className?: string;
 }
-const CustomInput = ({control, type, name, label, placeholder}:CustomInput) => {
+const CustomInput = ({control, type, name, label, placeholder, className=''}:CustomInput) => {
   return (
     <FormField
         control={control}
@@ -40,7 +41,7 @@ const CustomInput = ({control, type, name, label, placeholder}:CustomInput) => {
                         type={type}
                         id={name}
                         placeholder={placeholder}
-                        className='input-class min-w-full'
+                        className={'input-class min-w-full '+className}
                         {...field}
                         />
                     </FormControl>

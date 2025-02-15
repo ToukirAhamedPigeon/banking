@@ -10,7 +10,7 @@ export async function createSessionClient() {
 
   const session = (await cookies()).get("appwrite-session");
   if (!session || !session.value) {
-    console.warn("No session found, returning null.");
+    //console.warn("No session found, returning null.");
     return null; // Instead of throwing an error, return null
   }
 

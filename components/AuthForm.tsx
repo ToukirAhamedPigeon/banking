@@ -54,14 +54,14 @@ const AuthForm = ({type}:{type:string}) => {
             }
 
             if(type === 'sign-in'){
-                console.log(type);
+                //console.log(type);
                 const response = await signIn({
                     email: data.email,
                     password: data.password
                 });
-                console.log('response',response);
+                //console.log('response',response);
                 const loggedIn = await getLoggedInUser();
-                console.log('loggedin',loggedIn);
+                //console.log('loggedin',loggedIn);
                 if(response && loggedIn) router.push('/')
                 hideLoader(1000);
             }
@@ -112,17 +112,17 @@ const AuthForm = ({type}:{type:string}) => {
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                             {type === 'sign-up' && (
                                 <>
-                                <div className="flex gap-4">
-                                    <CustomInput control={form.control} type='text' name='firstName' label='First Name' placeholder='Enter your First Name' />
-                                    <CustomInput control={form.control} type='text' name='lastName' label='Last Name' placeholder='Enter your Last Name' />
-                                </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <CustomInput control={form.control} type='text' name='firstName' label='First Name' placeholder='Enter your First Name' />
+                                        <CustomInput control={form.control} type='text' name='lastName' label='Last Name' placeholder='Enter your Last Name' />
+                                    </div>
                                     <CustomInput control={form.control} type='text' name='address1' label='Address' placeholder='Enter your Specific Address' />
                                     <CustomInput control={form.control} type='text' name='city' label='City' placeholder='Enter your City' />
-                                    <div className="flex gap-4">
-                                        <CustomInput control={form.control} type='text' name='state' label='State' placeholder='ex: NY' />
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <CustomInput control={form.control} type='text' name='state' label='State' placeholder='ex: NY'  />
                                         <CustomInput control={form.control} type='text' name='postalCode' label='Postal Code' placeholder='ex: 11101' />
                                     </div>
-                                    <div className="flex gap-4">
+                                    <div className="grid grid-cols-2 gap-4">
                                         <CustomInput control={form.control} type='text' name='dateOfBirth' label='Date of Birth' placeholder='yyyy-mm-dd' />
                                         <CustomInput control={form.control} type='text' name='ssn' label='SSN' placeholder='ex: 1234' />
                                     </div>
