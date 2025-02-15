@@ -58,7 +58,7 @@ const AuthForm = ({type}:{type:string}) => {
                  }
                 setUser(newUser);
                 if(!newUser.error){
-                    hideLoader('You are In!',2000);
+                    hideLoader('You are In!',1500);
                 }
             }
 
@@ -77,7 +77,7 @@ const AuthForm = ({type}:{type:string}) => {
                 //console.log('loggedin',loggedIn);
                 if(response && loggedIn) router.push('/')
                     if(!response.error){
-                      hideLoader('Welcome Back!',2000);
+                      hideLoader('Welcome Back!',1500);
                     }
             }
         } catch (error) {

@@ -11,7 +11,7 @@ const Footer = ({user,type = 'desktop'}:FooterProps) => {
     const loggedOut= await logoutAccount();
     //console.log(loggedOut);
     if(loggedOut) router.push('/sign-in')
-      hideLoader(null,2000)
+      hideLoader(null,1500)
   }
   return (
     <>
