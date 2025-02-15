@@ -4,7 +4,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 
 interface LoaderContextType {
   showLoader: (message?: string, gifUrl?: string) => void;
-  hideLoader: (timeOut?:number) => void;
+  hideLoader: (message?:string|null,timeOut?:number) => void;
 }
 
 const LoaderContext = createContext<LoaderContextType | undefined>(undefined);
@@ -20,7 +20,8 @@ export const LoaderProvider = ({ children }: { children: ReactNode }) => {
     setLoading(true);
   };
 
-  const hideLoader = (timeOut=500) => {
+  const hideLoader = (message: string | null = null, timeOut: number = 500) => {
+    if(message!==null && message.length>0) setMessage(message);
     setTimeout(()=>{
         setLoading(false);
         setGifUrl(null);

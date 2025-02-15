@@ -6,24 +6,33 @@ import { createAdminClient, createSessionClient } from "../appwrite";
 import { cookies } from "next/headers";
 import { parseStringify } from "../utils";
 
-export const signIn = async ({email, password}:signInProps) => {
-  console.log('Inside Sign In');
-    try {
-        //Mutation / Database / Make fetch
-        const { account } = await createAdminClient();
-        const response = await account.createEmailPasswordSession(email,password);
-        (await cookies()).set("appwrite-session", response.secret, {
-          path: "/",
-          httpOnly: true,
-          sameSite: "strict",
-          secure: true,
-      });
-        //console.log(response);
-        return parseStringify(response);
-    } catch (error) {
-        console.error('Error',error);
+export const signIn = async ({ email, password }: signInProps) => {
+  try {
+    // Mutation / Database / Make fetch
+    const { account } = await createAdminClient();
+    const response = await account.createEmailPasswordSession(email, password);
+    
+    // Set session cookie
+    (await cookies()).set("appwrite-session", response.secret, {
+      path: "/",
+      httpOnly: true,
+      sameSite: "strict",
+      secure: true,
+    });
+    
+    //console.log(response);
+    return parseStringify(response);
+  } catch (error) {
+    // Handle invalid credentials error
+    if (error instanceof Error && 'response' in error && (error as any).response.code === 401) {
+      //console.error('Invalid credentials. Please check your email and password.');
+      return { error: 'Invalid credentials. Please check your email and password.' };
+    } else {
+      //console.error('Error', error);
+      return { error: 'An unexpected error occurred.' };
     }
-}
+  }
+};
 
 export const signUp = async (userData:SignUpParams) => {
     const {email, password, firstName, lastName} = userData;
@@ -44,10 +53,15 @@ export const signUp = async (userData:SignUpParams) => {
             sameSite: "strict",
             secure: true,
         });
-
         return parseStringify(newUserAccount);
     } catch (error) {
-        console.error('Error',error);
+      if (error instanceof Error && 'response' in error && (error as any).response.code === 401) {
+        //console.error('Registration Failed!');
+        return { error: 'Registration Failed!' };
+      } else {
+        //console.error('Error', error);
+        return { error: 'An unexpected error occurred.' };
+      }
     }
 }
 

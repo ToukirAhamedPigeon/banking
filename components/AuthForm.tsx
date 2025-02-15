@@ -5,6 +5,7 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
+import ErrorMessage from "../components/ErrorMessage";
 import {Form} from "@/components/ui/form"
 import CustomInput from './CustomInput'
 import { authFormSchema } from '@/lib/utils'
@@ -16,6 +17,7 @@ import { signUp, signIn, getLoggedInUser } from '@/lib/actions/user.actions'
 
 const AuthForm = ({type}:{type:string}) => {
     const router = useRouter();
+    const [error, setError] = useState("");
     // 1. Define your form.
     const formSchema = authFormSchema(type);
     const { showLoader, hideLoader } = useLoader()
@@ -40,17 +42,24 @@ const AuthForm = ({type}:{type:string}) => {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         if(type === 'sign-up'){
-            showLoader("You're In!");
+            showLoader("Signing Up...");
         }
         else{
-            showLoader("Welcome Back!");
+            showLoader("Signing In...");
         }
         setIsLoading(true);
         try {
             //Sign up with Appwrite & create plaid token
             if(type === 'sign-up'){
                 const newUser = await signUp(data);
+                if(newUser.error){
+                    hideLoader('Sorry! Something wrong.',500);
+                    setError(newUser.error);
+                 }
                 setUser(newUser);
+                if(!newUser.error){
+                    hideLoader('You are In!',2000);
+                }
             }
 
             if(type === 'sign-in'){
@@ -59,11 +68,17 @@ const AuthForm = ({type}:{type:string}) => {
                     email: data.email,
                     password: data.password
                 });
-                //console.log('response',response);
+                // console.log('response',response);
+                if(response.error){
+                   hideLoader('Sorry! Something wrong.',500);
+                   setError(response.error);
+                }
                 const loggedIn = await getLoggedInUser();
                 //console.log('loggedin',loggedIn);
                 if(response && loggedIn) router.push('/')
-                hideLoader(1000);
+                    if(!response.error){
+                      hideLoader('Welcome Back!',2000);
+                    }
             }
         } catch (error) {
             console.log(error);
@@ -83,7 +98,9 @@ const AuthForm = ({type}:{type:string}) => {
     if (user === null) return null;
     return (
         <section className="auth-form">
-            <header className="flex flex-col gap-5 md:gap-8">
+            <header className={type === 'sign-in'
+                    ? 'flex flex-col gap-5 md:gap-8'
+                    : 'flex flex-col gap-5 md:gap-8 mt-[480px]'}>
                 <LogoLink />
                 <div className="flex flex-col gap-1 md:gap-3">
                     <h1 className='text-24 lg:text-36 font-semibold text-gray-900'>
@@ -110,6 +127,7 @@ const AuthForm = ({type}:{type:string}) => {
                 <>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                        {error && <ErrorMessage message={error} setError={setError} />}
                             {type === 'sign-up' && (
                                 <>
                                     <div className="grid grid-cols-2 gap-4">

@@ -8,17 +8,17 @@ export default function RootLayout({
     children: React.ReactNode;
   }>) {
     return (
-      <main className="flex min-h-screen w-full justify-between items-stretch font-inter">
-        {children}
+      <main className="flex min-h-screen w-full justify-between items-stretch font-inter fixed">
+        {children}        
 
         {/* Right Panel with Image */}
-        <div className="auth-asset w-1/2 h-screen relative">
+        <div className="auth-asset w-1/2 h-screen fixed">
         <Image
           src="/icons/pigeon_banking.jpeg"
           alt="Auth Image"
           fill
           className="object-cover"
-          priority
+          priority 
           sizes="(max-width: 768px) 100vw, 50vw" // You can adjust this based on your design
         />
         </div>
