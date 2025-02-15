@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "Pigeon Bank",
   description: "Pigeon Bank is a mordern banking platform for everyone.",
   icons:{
-    icon:'/icons/logo.svg'
+    icon:'/icons/logo.png'
   }
 };
 
