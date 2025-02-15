@@ -1,13 +1,17 @@
 import React from 'react'
 import { logoutAccount } from '@/lib/actions/user.actions';
 import { useRouter } from 'next/navigation';
+import { useLoader } from "@/contexts/LoaderContext"
 
 const Footer = ({user,type = 'desktop'}:FooterProps) => {
   const router = useRouter();
+  const { showLoader, hideLoader } = useLoader()
   const handleLogOut = async () => {
+    showLoader('Logging Out..')
     const loggedOut= await logoutAccount();
     console.log(loggedOut);
     if(loggedOut) router.push('/sign-in')
+      hideLoader()
   }
   return (
     <>

@@ -11,12 +11,14 @@ import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import {useRouter} from 'next/navigation'
+import { useLoader } from "@/contexts/LoaderContext"
 import { signUp, signIn, getLoggedInUser } from '@/lib/actions/user.actions'
 
 const AuthForm = ({type}:{type:string}) => {
     const router = useRouter();
     // 1. Define your form.
     const formSchema = authFormSchema(type);
+    const { showLoader, hideLoader } = useLoader()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -37,6 +39,12 @@ const AuthForm = ({type}:{type:string}) => {
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
+        if(type === 'sign-up'){
+            showLoader("Signing up...");
+        }
+        else{
+            showLoader("Signing in...");
+        }
         setIsLoading(true);
         try {
             //Sign up with Appwrite & create plaid token
@@ -55,6 +63,7 @@ const AuthForm = ({type}:{type:string}) => {
                 const loggedIn = await getLoggedInUser();
                 console.log('loggedin',loggedIn);
                 if(response && loggedIn) router.push('/')
+                hideLoader(1000);
             }
         } catch (error) {
             console.log(error);
