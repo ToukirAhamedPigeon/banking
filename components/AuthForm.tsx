@@ -14,6 +14,7 @@ import Link from 'next/link'
 import {useRouter} from 'next/navigation'
 import { useLoader } from "@/contexts/LoaderContext"
 import { signUp, signIn, getLoggedInUser } from '@/lib/actions/user.actions'
+import PlaidLink from './PlaidLink'
 
 const AuthForm = ({type}:{type:string}) => {
     const router = useRouter();
@@ -51,7 +52,19 @@ const AuthForm = ({type}:{type:string}) => {
         try {
             //Sign up with Appwrite & create plaid token
             if(type === 'sign-up'){
-                const newUser = await signUp(data);
+                const userData = {
+                    firstName: data.firstName!,
+                    lastName: data.lastName!,
+                    address1: data.address1!,
+                    city: data.city!,
+                    state: data.state!,
+                    postalCode: data.postalCode!,
+                    dateOfBirth: data.dateOfBirth!,
+                    ssn: data.ssn!,
+                    email: data.email,
+                    password: data.password
+                };
+                const newUser = await signUp(userData);
                 if(newUser.error){
                     hideLoader('Sorry! Something wrong.',500);
                     setError(newUser.error);
@@ -87,20 +100,20 @@ const AuthForm = ({type}:{type:string}) => {
             setIsLoading(false);
         }
     }
-    const [user, setUser] = useState<boolean | null>(null);
+    const [user, setUser] = useState<null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     // Ensure user state is only set after mounting
     useEffect(() => {
-        setUser(false); // Set actual user status
+        setUser(null); // Set actual user status
     }, []);
     // Prevent hydration mismatch by not rendering until state is set
-    if (user === null) return null;
+    // if (user === null) return null;
     return (
         <section className="auth-form">
             <header className={type === 'sign-in'
                     ? 'flex flex-col gap-5 md:gap-8'
-                    : 'flex flex-col gap-5 md:gap-8 mt-[480px]'}>
+                    : 'flex flex-col gap-5 md:gap-8 mt-[180px]'}>
                 <LogoLink />
                 <div className="flex flex-col gap-1 md:gap-3">
                     <h1 className='text-24 lg:text-36 font-semibold text-gray-900'>
@@ -119,11 +132,11 @@ const AuthForm = ({type}:{type:string}) => {
                     </p>
                 </div>
             </header>
-            {user ? 
-                <div className="flex flex-col gap-4">
-                    {/*PlaidLink*/}
-                </div>
-            :(
+        {user ?   
+                 <div className="flex flex-col gap-4">
+                    <PlaidLink user={user} variant="primary" />
+                </div> 
+              :( 
                 <>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -172,7 +185,7 @@ const AuthForm = ({type}:{type:string}) => {
                         <Link href={type === 'sign-in' ? '/sign-up':'/sign-in'} className='text-blue-500'> {type === 'sign-in' ? 'Sign Up':'Sign In'} </Link>
                     </footer>
                 </>
-            )}
+              )}
         </section>
     )
 }
