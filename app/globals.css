@@ -380,3 +380,18 @@
     @apply text-16 font-semibold text-black-2 max-xl:hidden;
   }
 }
+
+
+
+@layer base {}
+
+
+
+/* @layer base {
+  * {
+    @apply border border-gray-300 outline-gray-50/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  } */
+/* } */

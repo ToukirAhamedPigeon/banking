@@ -21,6 +21,10 @@ const config = {
     },
     extend: {
       colors: {
+        background: "#ffffff", // Replace with your desired color
+        foreground: "#ffffff", // Define 'foreground' 
+        border: "#ffffff", // Add if missing
+        ring: "#ffffff",   // Define `ring` if using outline-ring/50
         fill: {
           1: "rgba(255, 255, 255, 0.10)",
         },

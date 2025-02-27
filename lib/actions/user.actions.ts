@@ -21,6 +21,27 @@ interface ErrorResponse {
   };
 }
 
+export const getUserInfo = async ({ userId }: getUserInfoProps) => {
+    try {
+      const { database } = await createAdminClient();
+      if (!userId || typeof userId !== "string") {
+        console.warn("Invalid userId provided for fetching bank.");
+        return null;
+      }
+    
+      console.log("Fetching user with userId:", userId);
+      const user = await database.listDocuments(
+        DATABASE_ID!,
+        USER_COLLECTION_ID!,
+        [Query.equal('userId', [userId])]
+      )
+
+      return parseStringify(user.documents[0]);
+    } catch (error) {
+      console.log(error)
+    }
+}
+
 export const signIn = async ({ email, password }: signInProps) => {
   try {
     // Mutation / Database / Make fetch
@@ -28,12 +49,15 @@ export const signIn = async ({ email, password }: signInProps) => {
     const response = await account.createEmailPasswordSession(email, password);
     
     // Set session cookie
-    (await cookies()).set("appwrite-session", response.secret, {
-      path: "/",
-      httpOnly: true,
-      sameSite: "strict",
-      secure: true,
-    });
+    const session = await account.createEmailPasswordSession(email, password);
+        (await cookies()).set("appwrite-session", session.secret, {
+            path: "/",
+            httpOnly: true,
+            sameSite: "strict",
+            secure: true,
+        });
+
+        const user = await getUserInfo({ userId: session.userId });
     
     //console.log(response);
     return parseStringify(response);
@@ -112,7 +136,8 @@ export async function getLoggedInUser() {
       const sessionClient = await createSessionClient();
       if (!sessionClient) return null;
       const { account } = sessionClient;
-      const user = await account.get();
+      const result = await account.get();
+      const user = await getUserInfo({ userId: result.$id });
       return await parseStringify(user);
     } 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -147,7 +172,7 @@ export async function getLoggedInUser() {
           client_user_id: user.$id,
         },
         client_name: `${user.firstName} ${user.lastName}`,
-        products: ['auth'] as Products[],
+        products: ['auth','transactions'] as Products[],
         language: 'en',
         country_codes: ['US'] as CountryCode[],
       }
@@ -237,11 +262,15 @@ export async function getLoggedInUser() {
   export const getBanks = async ({ userId }: getBanksProps) => {
     try {
       const { database } = await createAdminClient();
-  
+      if (!userId) {
+        console.warn("Warning: No user ID provided for getBanks.");
+        return null;  // Return an empty response instead of throwing an error
+      }
+      console.log("Fetching banks for User ID:", userId); // Debugging
       const banks = await database.listDocuments(
         DATABASE_ID!,
         BANK_COLLECTION_ID!,
-        [Query.equal('userId', [userId])]
+        [Query.equal("userId", [userId])] // Ensure correct query format
       )
   
       return parseStringify(banks.documents);
@@ -253,7 +282,12 @@ export async function getLoggedInUser() {
   export const getBank = async ({ documentId }: getBankProps) => {
     try {
       const { database } = await createAdminClient();
-  
+      if (!documentId || typeof documentId !== "string") {
+        console.warn("Invalid documentId provided for fetching bank.");
+        return null;
+      }
+    
+      console.log("Fetching bank with documentId:", documentId);
       const bank = await database.listDocuments(
         DATABASE_ID!,
         BANK_COLLECTION_ID!,

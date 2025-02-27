@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 declare type SearchParamProps = {
+  [x: string]: string;
   params: { [key: string]: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
@@ -318,7 +319,7 @@ declare interface createBankAccountProps {
 }
 
 declare interface getBanksProps {
-  userId: string;
+  userId:  string | undefined;
 }
 
 declare interface getBankProps {
