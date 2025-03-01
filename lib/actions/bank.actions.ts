@@ -188,7 +188,10 @@ export const getTransactions = async ({ accessToken }: getTransactionsProps) => 
     }
 
     return parseStringify(transactions);
-  } catch (error: any) {
+  } catch (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    error: any
+  ) {
     console.error("An error occurred while getting transactions:", error.response?.data || error.message);
     return { error: "Failed to fetch transactions." };
   }
