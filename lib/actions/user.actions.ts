@@ -57,7 +57,7 @@ export const signIn = async ({ email, password }: signInProps) => {
             secure: true,
         });
 
-        const user = await getUserInfo({ userId: session.userId });
+        // const user = await getUserInfo({ userId: session.userId });
     
     //console.log(response);
     return parseStringify(response);

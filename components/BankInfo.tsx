@@ -9,7 +9,6 @@ import {
   formatAmount,
   getAccountTypeColors,
 } from "@/lib/utils";
-import TransactionsTable from "./TransactionsTable";
 
 const BankInfo = ({ account, appwriteItemId, type }: BankInfoProps) => {
   const router = useRouter();
