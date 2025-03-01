@@ -152,7 +152,7 @@ export const getInstitution = async ({
 // Get transactions
 export const getTransactions = async ({ accessToken }: getTransactionsProps) => {
   let hasMore = true;
-  let transactions: any[] = [];
+  const transactions: any[] = [];
   let cursor: string | undefined = undefined;
 
   try {
