@@ -287,8 +287,8 @@ export async function getLoggedInUser() {
         return null;
       }
     
-      //console.log("Fetching bank with documentId:", documentId);
-      const bank = await database.listDocuments(
+  //console.log("Fetching bank with documentId:", documentId);
+  const bank = await database.listDocuments(
         DATABASE_ID!,
         BANK_COLLECTION_ID!,
         [Query.equal('$id', [documentId])]

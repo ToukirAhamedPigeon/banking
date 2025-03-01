@@ -150,10 +150,7 @@ export function countTransactionCategories(
       // Increment total count
       totalCount++;
     });
-
-
-  return [];
-}
+  }
 
   // Convert the categoryCounts object to an array of objects
   const aggregatedCategories: CategoryCount[] = Object.keys(categoryCounts).map(

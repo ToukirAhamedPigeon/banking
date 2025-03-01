@@ -16,6 +16,7 @@ import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
 import LogoLink from './LogoLink'
 import Footer from './Footer'
+import PlaidLink from './PlaidLink'
   
 
 const MobileNav = (
@@ -45,7 +46,9 @@ const MobileNav = (
                                 </Link>
                             </SheetClose>
                         )})}
-                            USER
+                        <SheetClose asChild>
+                            <PlaidLink user={user}/>
+                        </SheetClose>
                     </nav>
                 </SheetClose>
                 <Footer user={user} type="mobile"/>
