@@ -10,7 +10,7 @@ const DoughnutChart = (
 ) => {
     const accountNames = accounts.map(account => account.name);
     const balances = accounts.map(account => account.currentBalance);
-    console.log({accountNames, balances});
+    //console.log({accountNames, balances});
     const data={
         datasets: [
             {

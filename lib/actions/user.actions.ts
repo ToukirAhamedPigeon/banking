@@ -29,7 +29,7 @@ export const getUserInfo = async ({ userId }: getUserInfoProps) => {
         return null;
       }
     
-      console.log("Fetching user with userId:", userId);
+      //console.log("Fetching user with userId:", userId);
       const user = await database.listDocuments(
         DATABASE_ID!,
         USER_COLLECTION_ID!,
@@ -266,7 +266,7 @@ export async function getLoggedInUser() {
         console.warn("Warning: No user ID provided for getBanks.");
         return null;  // Return an empty response instead of throwing an error
       }
-      console.log("Fetching banks for User ID:", userId); // Debugging
+      //console.log("Fetching banks for User ID:", userId); // Debugging
       const banks = await database.listDocuments(
         DATABASE_ID!,
         BANK_COLLECTION_ID!,
@@ -287,7 +287,7 @@ export async function getLoggedInUser() {
         return null;
       }
     
-      console.log("Fetching bank with documentId:", documentId);
+      //console.log("Fetching bank with documentId:", documentId);
       const bank = await database.listDocuments(
         DATABASE_ID!,
         BANK_COLLECTION_ID!,

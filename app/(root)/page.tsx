@@ -6,13 +6,14 @@ import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
 import React from 'react'
 
-const Home = async (searchParams:SearchParamProps) => {
-  const currentPage = Number(searchParams?.page as string) || 1;
+const Home = async ({ searchParams }: SearchParamProps) => {
+  const { id, page } = await searchParams;
+  const currentPage = Number(page as string) || 1;
   const loggedIn = await getLoggedInUser();
   const accounts = await getAccounts({ userId: loggedIn?.$id });
   if(!accounts) return; 
   const accountsData = accounts?.data; 
-  const appwriteItemId = (searchParams?.id as string) || accountsData[0]?.appwriteItemId;
+ const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
   const account = await getAccount({ appwriteItemId });
   return (
     <section className='home'>
@@ -32,14 +33,14 @@ const Home = async (searchParams:SearchParamProps) => {
         </header>
         <RecentTransactions 
           accounts={accountsData}
-          transactions={accounts?.transactions}
+          transactions={account?.transactions}
           appwriteItemId={appwriteItemId}
           page={currentPage}
         />
       </div>
       <RightSidebar 
           user = {loggedIn}
-          transactions={accounts?.transactions}
+          transactions={account?.transactions}
           banks={accountsData?.slice(0,2)}
         />
     </section>
