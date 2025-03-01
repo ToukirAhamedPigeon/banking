@@ -152,6 +152,7 @@ export const getInstitution = async ({
 // Get transactions
 export const getTransactions = async ({ accessToken }: getTransactionsProps) => {
   let hasMore = true;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const transactions: any[] = [];
   let cursor: string | undefined = undefined;
 
