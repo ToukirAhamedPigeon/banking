@@ -2,7 +2,7 @@ import { withSentryConfig } from "@sentry/nextjs";
 
 const sentryWebpackPluginOptions = {
   sourcemaps: {
-    deleteSourcemapsAfterUpload: true, // Deletes source maps after upload
+    deleteSourcemapsAfterUpload: true, // Removes source maps after uploading
   },
 };
 
