@@ -14,16 +14,18 @@ interface CustomFlatpickrProps {
   name: FieldPath<FormSchemaType>;
   label: string;
   placeholder: string;
+  defaultDate?: string | null; // Can be a date string or null
   className?: string;
 }
 
-const CustomFlatpickr = ({ control, name, label, placeholder, className = "" }: CustomFlatpickrProps) => {
+const CustomFlatpickr = ({ control, name, label, placeholder, defaultDate = null, className = "" }: CustomFlatpickrProps) => {
   const datepickerRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (datepickerRef.current) {
       Flatpickr(datepickerRef.current, {
         dateFormat: "Y-m-d",
+        defaultDate: defaultDate || new Date(), // If null, use current date
       });
     }
   }, []);

@@ -103,6 +103,11 @@ const AuthForm = ({type}:{type:string}) => {
     }
     const [user, setUser] = useState<null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const getDefaultDate = (years: number) => {
+        const today = new Date();
+        today.setFullYear(today.getFullYear() - years);
+        return today;
+      };
 
     // Ensure user state is only set after mounting
     useEffect(() => {
@@ -155,7 +160,7 @@ const AuthForm = ({type}:{type:string}) => {
                                         <CustomInput control={form.control} type='text' name='postalCode' label='Postal Code' placeholder='ex: 11101' />
                                     </div>
                                     <div className="grid grid-cols-2 gap-4">
-                                        <CustomFlatpickr control={form.control} name="dateOfBirth" label="Date of Birth" placeholder="Select a date" />
+                                        <CustomFlatpickr control={form.control} name="dateOfBirth" label="Date of Birth" placeholder="Select a date"  defaultDate={getDefaultDate(20).toISOString().split('T')[0]} />
                                         {/* <FlatpickrComponent control={form.control} name="dateOfBirth" label='Date of Birth' placeholder='yyyy-mm-dd'/> */}
                                         {/* <CustomInput control={form.control} type='text' name='dateOfBirth' label='Date of Birth' placeholder='yyyy-mm-dd' /> */}
                                         <CustomInput control={form.control} type='text' name='ssn' label='SSN' placeholder='ex: 1234' />
