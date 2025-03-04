@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import ErrorMessage from "../components/ErrorMessage";
 import {Form} from "@/components/ui/form"
 import CustomInput from './CustomInput'
+import CustomFlatpickr from "./CustomFlatpickr";
 import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import Link from 'next/link'
@@ -154,7 +155,9 @@ const AuthForm = ({type}:{type:string}) => {
                                         <CustomInput control={form.control} type='text' name='postalCode' label='Postal Code' placeholder='ex: 11101' />
                                     </div>
                                     <div className="grid grid-cols-2 gap-4">
-                                        <CustomInput control={form.control} type='text' name='dateOfBirth' label='Date of Birth' placeholder='yyyy-mm-dd' />
+                                        <CustomFlatpickr control={form.control} name="dateOfBirth" label="Date of Birth" placeholder="Select a date" />
+                                        {/* <FlatpickrComponent control={form.control} name="dateOfBirth" label='Date of Birth' placeholder='yyyy-mm-dd'/> */}
+                                        {/* <CustomInput control={form.control} type='text' name='dateOfBirth' label='Date of Birth' placeholder='yyyy-mm-dd' /> */}
                                         <CustomInput control={form.control} type='text' name='ssn' label='SSN' placeholder='ex: 1234' />
                                     </div>
                                 </>
