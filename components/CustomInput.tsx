@@ -34,14 +34,14 @@ const CustomInput = ({control, type, name, label, placeholder, className=''}:Cus
         name={name}
         render={({ field }) => (
             <div className='form-item'>
-                <FormLabel className='form-label'>{label}</FormLabel>
+                <FormLabel className='form-label dark:text-gray-300'>{label}</FormLabel>
                 <div className="flex w-full flex-col">
                     <FormControl>
                         <Input 
                         type={type}
                         id={name}
                         placeholder={placeholder}
-                        className={'input-class min-w-full '+className}
+                        className={'input-class min-w-full dark:text-gray-300 dark:border-blue-900 '+className}
                         {...field}
                         />
                     </FormControl>

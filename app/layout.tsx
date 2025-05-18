@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, IBM_Plex_Serif } from "next/font/google";
 import "./globals.css";
 import { LoaderProvider } from "@/contexts/LoaderContext";
+import { ThemeProvider } from 'next-themes'
+import { ThemeClientWrapper } from "@/components/ThemeClientWrapper";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,14 +31,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" suppressHydrationWarning>
+       
       <body
         className={`${geistSans.variable} ${ibmPlexSerif.variable} antialiased`}
       >
-        <LoaderProvider>
-          {children}
-        </LoaderProvider>
+       <ThemeProvider attribute="class"
+    defaultTheme="dark"
+    enableSystem={false}
+    // enableColorScheme={false}
+    >
+       <ThemeClientWrapper>
+          <LoaderProvider>
+            {children}
+          </LoaderProvider>
+          </ThemeClientWrapper>
+          </ThemeProvider>
+        
       </body>
+      
     </html>
   );
 }
