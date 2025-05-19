@@ -15,14 +15,14 @@ const Sidebar = (
     const pathName=usePathname();
     //console.log(user);
   return (
-    <section className="sidebar">
+    <section className="sidebar dark:bg-black-1 dark:border-r-black-1">
       <nav className='flex flex-col gap-4'>
         <LogoLink />
         {sidebarLinks.map((item)=>{
             const isActive=pathName===item.route || pathName.startsWith(`${item.route}/`);
            return <Link href={item.route} key={item.label} className={cn('sidebar-link',{'bg-bank-gradient':isActive})}>
                 <div className='relative size-6'><Image src={item.imgURL} alt={item.label} fill className={cn({'brightness-[3] invert-0':isActive})} /></div>
-                <p className={cn('sidebar-label',{'!text-white':isActive})} >{item.label}</p>
+                <p className={cn('sidebar-label !text-slate-300',{'!text-white':isActive})} >{item.label}</p>
             </Link>
         })}
         <PlaidLink user={user}/>

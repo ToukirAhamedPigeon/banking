@@ -29,20 +29,20 @@ const PlaidLink = ({user, variant}:PlaidLinkProps) => {
   return (
     <>
       {variant === 'primary' ? (
-        <Button onClick={()=>open()} className='plaidlink-primary' disabled={!ready}>
+        <Button onClick={()=>open()} className='plaidlink-primary !dark:text-slate-300' disabled={!ready}>
             Connect bank
         </Button>
       ): variant === 'ghost' ? (
         <Button variant="ghost" onClick={()=>open()} className='plaidlink-ghost'>
             <Image src='/icons/connect-bank.svg' alt='connect bank' width={24} height={
                 24} />
-            <p className="hiddenl text-[16px] font-semibold text-black-2 xl:block">Connect Bank</p>
+            <p className="hiddenl text-[16px] font-semibold text-black-2 xl:block !dark:text-slate-300">Connect Bank </p>
         </Button>
         ):(
-        <Button onClick={()=>open()} className='plaidlink-default'>
+        <Button onClick={()=>open()} className='plaidlink-default dark:text-slate-300'>
             <Image src='/icons/connect-bank.svg' alt='connect bank' width={24} height={
                 24} />
-            <p className="hiddenl text-[16px] font-semibold text-black-2 xl:block">Connect Bank</p>
+            <p className="hiddenl text-[16px] font-semibold text-black-2 xl:block dark:text-slate-300">Connect Bank </p>
         </Button>
         )}
     </>
