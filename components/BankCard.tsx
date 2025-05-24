@@ -43,7 +43,7 @@ const BankCard = ({account, userName, showBalance =true}:CreditCardProps) => {
         <Image src="/icons/lines.png"
         width={316} height={190} alt="lines" className="absolute top-0 left-0" />
       </Link>
-      {showBalance && <Copy key={account?.id} title={account?.sharaebleId} />}
+      {showBalance && <Copy key={`${account?.id}-${account?.appwriteItemId}`} title={account?.sharaebleId} />}
     </div>
   )
 }

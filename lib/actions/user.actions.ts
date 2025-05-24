@@ -162,26 +162,38 @@ export async function getLoggedInUser() {
     }
   }
 
-  export const createLinkToken = async (user:User) => {
+  export const createLinkToken = async (user: User) => {
     try {
       if (!user) {
         throw new Error("User is not authenticated");
       }
-      const tokenParams ={
+  
+      const bank = await getBankByUserId({ userId: user.$id });
+      const existingAccessToken = bank?.accessToken;
+  
+      const tokenParams: any = {
         user: {
           client_user_id: user.$id,
         },
         client_name: `${user.firstName} ${user.lastName}`,
-        products: ['auth','transactions'] as Products[],
+        products: ['auth', 'transactions'] as Products[],
         language: 'en',
         country_codes: ['US'] as CountryCode[],
+      };
+  
+      // If user already linked a bank, use update mode
+      if (existingAccessToken) {
+        tokenParams.access_token = existingAccessToken;
+        tokenParams.update = { account_selection_enabled: true };
       }
+  
       const response = await plaidClient.linkTokenCreate(tokenParams);
-      return parseStringify({linkToken: response.data.link_token});
+      return parseStringify({ linkToken: response.data.link_token });
+  
     } catch (error) {
-      console.log('Error',error);
+      console.log('Error creating link token:', error);
     }
-  }
+  };
 
   export const createBankAccount = async ({
     userId,
@@ -308,6 +320,24 @@ export async function getLoggedInUser() {
         DATABASE_ID!,
         BANK_COLLECTION_ID!,
         [Query.equal('accountId', [accountId])]
+      )
+  
+      if(bank.total !== 1) return null;
+  
+      return parseStringify(bank.documents[0]);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  export const getBankByUserId = async ({ userId }: {userId:string}) => {
+    try {
+      const { database } = await createAdminClient();
+  
+      const bank = await database.listDocuments(
+        DATABASE_ID!,
+        BANK_COLLECTION_ID!,
+        [Query.equal('userId', [userId])]
       )
   
       if(bank.total !== 1) return null;

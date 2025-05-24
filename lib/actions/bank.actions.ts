@@ -100,9 +100,10 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
       institutionId: accountsResponse.data.item.institution_id!,
     });
 
-    const transactions = await getTransactions({
+    const raw = await getTransactions({
       accessToken: bank?.accessToken,
     });
+    const transactions = Array.isArray(raw) ? raw : [];
 
     const account = {
       id: accountData.account_id,
@@ -165,6 +166,7 @@ export const getTransactions = async ({ accessToken }: getTransactionsProps) => 
       });
 
       const data = response.data;
+      if (data.has_more === undefined) return [];
 
       // Append new transactions instead of overwriting
       transactions.push(

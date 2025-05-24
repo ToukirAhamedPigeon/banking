@@ -65,7 +65,7 @@ export const BankDropdown = ({
           </SelectLabel>
           {accounts.map((account: Account) => (
             <SelectItem
-              key={account.id}
+            key={`${account.id}-${account.appwriteItemId}`}
               value={account.appwriteItemId}
               className="cursor-pointer border-t"
             >

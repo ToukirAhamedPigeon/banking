@@ -9,14 +9,14 @@ const TotalBalanceBox = ({
 }:TotlaBalanceBoxProps
 ) => {
   return (
-    <div className='total-balance'>
+    <div className='total-balance dark:border-blue-900'>
       <div className="total-balance-chart">
         <DoughnutChart 
          accounts={accounts}
         />
       </div>
       <div className="flex flex-col gap-6">
-        <h2 className="header-2">
+        <h2 className="header-2 dark:text-slate-200">
             Bank Accounts: {totalBanks} 
         </h2>
         <div className="flex flex-col gap-2">
