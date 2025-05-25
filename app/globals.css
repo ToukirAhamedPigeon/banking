@@ -48,6 +48,10 @@
     @apply text-16 placeholder:text-16 rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500;
   }
 
+  .recent-transactions-tablist button[data-state="active"] {
+    @apply dark:bg-blue-800;
+  }
+
   .sheet-content button {
     @apply focus:ring-0 focus-visible:ring-transparent focus:ring-offset-0 focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:border-none !important;
   }

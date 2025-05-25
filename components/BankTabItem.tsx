@@ -29,13 +29,13 @@ export const BankTabItem = ({ account, appwriteItemId }: BankTabItemProps) => {
   return (
     <div
       onClick={handleBankChange}
-      className={cn(`banktab-item`, {
-        " border-blue-600": isActive,
+      className={cn(`banktab-item dark:border-blue-600 `, {
+        " border-blue-600 dark:border-white": isActive,
       })}
     >
       <p
-        className={cn(`text-16 line-clamp-1 flex-1 font-medium text-gray-500`, {
-          " text-blue-600": isActive,
+        className={cn(`text-16 line-clamp-1 flex-1 font-medium text-gray-500 dark:text-white`, {
+          " text-blue-600 dark:text-white": isActive,
         })}
       >
         {account.name}

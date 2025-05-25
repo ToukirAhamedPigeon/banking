@@ -5,7 +5,7 @@ import CountUp from 'react-countup'
 
 const AnimatedCounter = ({amount}: {amount: number} ) => {
   return (
-    <div className='w-full'>
+    <div className='w-full dark:text-blue-500'>
       <CountUp decimal='.' prefix='$' duration={2.75} decimals={2} end={amount}/>
     </div>
   )
