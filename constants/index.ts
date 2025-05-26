@@ -77,7 +77,7 @@ export const topCategoryStyles = {
     icon: "/icons/coins.svg",
   },
   default: {
-    bg: "bg-pink-25",
+    bg: "bg-pink-25 dark:bg-pink-25/80",
     circleBg: "bg-pink-100",
     text: {
       main: "text-pink-900",

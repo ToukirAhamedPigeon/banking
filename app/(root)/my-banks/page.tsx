@@ -9,7 +9,7 @@ const MyBanks = async () => {
   const accounts = await getAccounts({ userId: loggedIn?.$id });
   return (
     <section className='flex'>
-      <div className='my-banks'>
+      <div className='my-banks dark:bg-gray-900'>
         <HeaderBox title='My Bank Accounts' subtext="Effortlessly manage your banking activities."/>
         <div className='space-y-4'>
         <h2 className='header-2'>

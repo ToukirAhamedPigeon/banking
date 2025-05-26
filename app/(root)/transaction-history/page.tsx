@@ -24,7 +24,7 @@ const TransactionHistory = async ({ searchParams }: SearchParamProps) => {
     const indexOfFirstTransaction = indexOfLastTransaction -rowsPerPage;
     const currentTransactions = account?.transactions.slice(indexOfFirstTransaction,indexOfLastTransaction);
   return (
-    <div className='transactions'>
+    <div className='transactions dark:bg-gray-900'>
       <div className='transactions-header'>
         <HeaderBox title='Transaction History' subtext="See your bank details and transactions."/>
       </div>
