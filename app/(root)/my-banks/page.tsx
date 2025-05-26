@@ -10,10 +10,10 @@ const MyBanks = async () => {
   return (
     <section className='flex'>
       <div className='my-banks dark:bg-gray-900'>
-        <HeaderBox title='My Bank Accounts' subtext="Effortlessly manage your banking activities."/>
+        <HeaderBox title='Linked Bank Accounts' subtext="Easily handle all your banking tasks."/>
         <div className='space-y-4'>
-        <h2 className='header-2'>
-          Your cards
+        <h2 className='header-2 dark:text-gray-100'>
+          Account Cards
         </h2>
         <div className='flex flex-wrap gap-6'>
           {accounts?.data.map((account:Account)=>(

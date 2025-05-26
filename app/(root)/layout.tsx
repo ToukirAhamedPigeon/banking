@@ -23,7 +23,9 @@ export default async function RootLayout({
           /> 
           <div className="flex size-full flex-col">
             <div className="root-layout">
-              <Image src="/icons/logo.png" width={30} height={30} alt="menu icon"/>
+              <div className="dark:bg-gray-100/80 dark:p-1 dark:rounded-full">
+                <Image src="/icons/logo.png" width={30} height={30} alt="menu icon"/>
+              </div>
               <div>
                 <MobileNav 
                 user={loggedIn}

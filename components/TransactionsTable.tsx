@@ -29,7 +29,7 @@ const TransactionsTable = async ({transactions}:TransactionTableProps) => {
   return (
     <div>
         <Table>
-            <TableCaption>A list of your recent invoices.</TableCaption>
+            <TableCaption>Latest Invoice List.</TableCaption>
             <TableHeader>
                 <TableRow className='dark:bg-gray-800'>
                 <TableHead className="px-2  dark:text-gray-200">Transaction</TableHead>

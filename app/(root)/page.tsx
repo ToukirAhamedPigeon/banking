@@ -21,9 +21,9 @@ const Home = async ({ searchParams }: SearchParamProps) => {
         <header className="home-header">
           <HeaderBox 
             type="greeting"
-            title="Welcome"
+            title="Good to see you,"
             user={loggedIn?.firstName || 'Guest'}
-            subtext="Access and manage your account and transactions efficiently."
+            subtext="Easily access and manage your account and transactions."
           />
           <TotalBalanceBox
             accounts={accountsData}

@@ -10,10 +10,10 @@ const Transfer = async () => {
     if(!accounts) return; 
     const accountsData = accounts?.data;
   return (
-    <div className='payment-transfer'>
+    <div className='payment-transfer dark:bg-gray-900'>
       <HeaderBox 
-      title="Payment Transfer"
-      subtext="Please provide any specific details or notes related to the payment transfer"
+      title="Transfer Funds"
+      subtext="Kindly include any specific details or notes regarding the payment transfer"
       />
       <section className='size-full pt-5'>
       <PaymentTransferForm accounts={accountsData}/>

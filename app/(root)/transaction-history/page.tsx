@@ -26,7 +26,7 @@ const TransactionHistory = async ({ searchParams }: SearchParamProps) => {
   return (
     <div className='transactions dark:bg-gray-900'>
       <div className='transactions-header'>
-        <HeaderBox title='Transaction History' subtext="See your bank details and transactions."/>
+        <HeaderBox title='Transaction History' subtext="Access your bank details and recent transactions."/>
       </div>
       <div className='space-y-6'>
         <div className='transactions-account'>

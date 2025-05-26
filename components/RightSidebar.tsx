@@ -32,10 +32,10 @@ const RightSidebar = (
       </section>
       <section className="banks">
         <div className="flex w-full justify-between">
-            <h2 className="header-2 dark:text-blue-500">My Banks</h2>
+            <h2 className="header-2 dark:text-blue-500">Linked Banks</h2>
             <Link href="/" className="flex gap-2">
                 <Image src="/icons/plus.svg" width={20} height={20} alt="plus"></Image>
-                <h2 className="text-14 font-semibold text-gray-600 dark:text-gray-300">Add Bank</h2>
+                <h2 className="text-14 font-semibold text-gray-600 dark:text-gray-300">Link Bank</h2>
             </Link>
         </div>
         {banks?.length >0 && (
@@ -61,7 +61,7 @@ const RightSidebar = (
             </div>
         )}
         <div className="mt-10 flex flex-1 flex-col gap-6">
-            <h2 className="header-2 dark:text-blue-500">Top Categories</h2>
+            <h2 className="header-2 dark:text-blue-500">Featured Categories</h2>
             <div className="space-y-5">
                 {categories.map((category,i)=>(
                     <Category key={category.name+i} category={category} />
